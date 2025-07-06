@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <style>
+  /* admin.css - Green Themed Admin Dashboard */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #c6f6c3, #7ed957); /* light green gradient */
+  color: #2e7d32;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #2e7d32; /* Dark green */
+  padding: 15px 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #e0f2f1;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.nav-links li a:hover,
+.logout-btn:hover {
+  color: #a5d6a7;
+  font-weight: bold;
+}
+
+/* Dashboard Main Content */
+.dashboard {
+  padding-top: 100px;
+  text-align: center;
+}
+
+.dashboard h1 {
+  color: #1b5e20;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.card {
+  background-color: #e8f5e9; /* light green card */
+  padding: 30px;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #2e7d32;
+}
+
+.card p {
+  color: #388e3c;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #388e3c;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">USER DASHBOARD</a>
+      <ul class="nav-links">
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="soil-details.html">View Soil Details</a></li>
+        <li><a href="distributors.html">View Distributor Details</a></li>
+        <li><a href="Login.html" class="logout-btn">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="dashboard">
+    <h1>Welcome, Admin Dashboard</h1>
+    <p>Choose an action from the navigation bar.</p>
+    <div class="card-container">
+      <div class="card">
+        <h3>View Soil Details</h3>
+        <p>Add soil data.</p>
+        <a href="soil-details.html" class="btn">Go</a>
+      </div>
+      <div class="card">
+        <h3>View Distributor Details</h3>
+        <p>Add distributor info records.</p>
+        <a href="distributors.html" class="btn">Go</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

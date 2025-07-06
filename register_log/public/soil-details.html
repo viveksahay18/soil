@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Soil Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(to right, #a8e063, #56ab2f); /* greenish background */
+      color: #2d3436;
+    }
+
+    h1 {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #ffffffcc;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      background: white;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #27ae60;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #ecf0f1;
+    }
+
+    .loading {
+      text-align: center;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Soil Records</h1>
+  <div class="container">
+    <div id="loading" class="loading">Loading data...</div>
+    <table id="soilTable" style="display: none;">
+      <thead>
+        <tr>
+          <th>Location</th>
+          <th>pH Level</th>
+          <th>Moisture (%)</th>
+          <th>Nutrients</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Dynamic data rows will go here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const API_URL = "http://localhost:5000/api/soil"; // Update this if different
+    const table = document.getElementById("soilTable");
+    const tbody = table.querySelector("tbody");
+    const loadingText = document.getElementById("loading");
+
+    async function fetchSoilData() {
+      try {
+        const res = await fetch(API_URL);
+        const data = await res.json();
+
+        if (Array.isArray(data) && data.length > 0) {
+          data.forEach(soil => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${soil.location}</td>
+              <td>${soil.phLevel}</td>
+              <td>${soil.moisture}</td>
+              <td>${soil.nutrients}</td>
+            `;
+            tbody.appendChild(row);
+          });
+          table.style.display = "table";
+        } else {
+          loadingText.textContent = "No soil records found.";
+        }
+      } catch (error) {
+        console.error("Fetch error:", error);
+        loadingText.textContent = "Failed to load data.";
+      }
+    }
+
+    fetchSoilData();
+  </script>
+
+</body>
+</html>

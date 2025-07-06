@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soil Framing Agent</title>
+  <link rel="stylesheet" href="style1.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    /* ====== Slider ====== */
+    .slider-container {
+      position: relative;
+      max-width: 100%;
+      overflow: hidden;
+      margin: 0px auto;
+    }
+
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slider img {
+      width: 100%;
+	  height: auto;
+    }
+
+    .slider-buttons {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      padding: 0 10px;
+    }
+
+    .slider-button {
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      color: white;
+      font-size: 24px;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======= Navigation ======= -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">Soil Framing Agent</div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="Login.html">Admin</a></li>
+        <li><a href="register_log\public/register.html" target="_blank">User</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ======= Image Slider ======= -->
+  <section class="slider-container">
+    <div class="slider">
+      <img src="img/m1.jfif" alt="Agri Image 1">
+      <img src="img/m2.jfif" alt="Agri Image 2">
+      <img src="img/m3.jfif" alt="Agri Image 3">
+	  <img src="img/m4.jfif" alt="Agri Image 4">
+      <img src="img/m5.jfif" alt="Agri Image 5">
+      <img src="img/m6.jfif" alt="Agri Image 6">
+      <img src="img/m8.jfif" alt="Agri Image 2">
+      <img src="img/m9.jfif" alt="Agri Image 3">
+	  <img src="img/m10.jfif" alt="Agri Image 4">
+      <img src="img/m11.jfif" alt="Agri Image 5">
+      <img src="img/m12.jfif" alt="Agri Image 6">
+	  <img src="img/m1.jfif" alt="Agri Image 1">
+      <img src="img/m13.jfif" alt="Agri Image 2">
+      <img src="img/m14.jfif" alt="Agri Image 3">
+	  <img src="img/m15.jfif" alt="Agri Image 4">
+      <img src="img/m16.jfif" alt="Agri Image 5">
+      <img src="img/m17.jfif" alt="Agri Image 6">
+	  <img src="img/m18.jfif" alt="Agri Image 5">
+      <img src="img/m19.jfif" alt="Agri Image 6">
+	  <img src="img/m14.jfif" alt="Agri Image 3">
+	  <img src="img/m1.jfif" alt="Agri Image 1">
+    </div>
+    <div class="slider-buttons">
+      <button class="slider-button" id="prevBtn">&#10094;</button>
+      <button class="slider-button" id="nextBtn">&#10095;</button>
+    </div>
+  </section>
+
+  <!-- ======= Hero Section ======= -->
+  <section class="hero">
+    <h1>Welcome to Soil Framing Agent</h1>
+    <p>Your smart solution for farming, soil & distributor management</p>
+  </section>
+
+  <!-- ======= Important Links ======= -->
+  <section class="important-links">
+    <h2>Important Links</h2>
+    <ul>
+      <li><a href="https://dbtagriculture.bihar.gov.in/" target="_blank">Agriculture</a></li>
+	  <li><a href="https://agricoopgov.org/" target="_blank">DAFW</a></li>
+	  <li><a href="https://rajkisan.rajasthan.gov.in/" target="_blank">Department of Agriculture</a></li>
+      <li><a href="https://www.bighaat.com" target="_blank">BigHaat</a></li>
+      <li><a href="https://seedtrace.gov.in/ms014/" target="_blank">साथी</a></li>
+      <li><a href="https://agribegri.com/" target="_blank">AgriBegri</a></li>
+	  <li><a href="https://icar.org.in" target="_blank">ICAR</a></li>
+	  
+	  
+    </ul>
+  </section>
+
+  <!-- ======= Contact Icons ======= -->
+  <section id="contact" class="contact-icons">
+    <h2>Contact Us</h2>
+    <div class="icons">
+      <a href="https://www.linkedin.com/in/viveksahay18"><i class="fab fa-linkedin fa-2x"></i></a>
+      <a href="https://instagram.com"><i class="fab fa-instagram fa-2x"></i></a>
+	  <a href="https://facebook.com"><i class="fab fa-facebook fa-2x"></i></a>
+    </div>
+  </section>
+
+  <!-- ======= Footer ======= -->
+  <footer>
+    <p>&copy; 2025 Soil Framing. All rights reserved.</p>
+    <p>Designed for agriculture innovation</p>
+  </footer>
+
+ <script>
+  const slider = document.querySelector('.slider');
+  const images = document.querySelectorAll('.slider img');
+  let currentIndex = 0;
+
+  function showImage(index) {
+    const width = images[0].clientWidth;
+    slider.style.transform = `translateX(-${index * width}px)`;
+  }
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    showImage(currentIndex);
+  }
+
+  function prevImage() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showImage(currentIndex);
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', nextImage);
+  document.getElementById('prevBtn').addEventListener('click', prevImage);
+
+  // Auto-move every 3 seconds (3000ms)
+  setInterval(nextImage, 3000);
+
+  // Adjust on window resize
+  window.addEventListener('resize', () => showImage(currentIndex));
+
+  // Initialize position
+  showImage(currentIndex);
+</script>
+
+
+</body>
+</html>

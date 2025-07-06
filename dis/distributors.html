@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Distributor Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #b2f7b8, #7ed957); /* greenish */
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #ffffffd9;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      text-align: center;
+      color: #14532d;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #ccc;
+      text-align: left;
+    }
+
+    th {
+      background-color: #38a169;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #e0f7e9;
+    }
+
+    .loading {
+      text-align: center;
+      font-style: italic;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Distributor Records</h1>
+    <div id="loading" class="loading">Loading distributor data...</div>
+    <table id="distributorTable" style="display: none;">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Contact</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data rows will be inserted here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const API_URL = "http://localhost:5000/api/distributors"; // Change if needed
+
+    const table = document.getElementById("distributorTable");
+    const tbody = table.querySelector("tbody");
+    const loading = document.getElementById("loading");
+
+    async function fetchDistributors() {
+      try {
+        const res = await fetch(API_URL);
+        const distributors = await res.json();
+
+        if (Array.isArray(distributors) && distributors.length > 0) {
+          distributors.forEach(dist => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${dist.name}</td>
+              <td>${dist.address}</td>
+              <td>${dist.contactNumber}</td>
+              <td>${dist.email}</td>
+            `;
+            tbody.appendChild(row);
+          });
+
+          table.style.display = "table";
+        } else {
+          loading.textContent = "No distributor records found.";
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        loading.textContent = "Failed to load data.";
+      }
+    }
+
+    fetchDistributors();
+  </script>
+
+</body>
+</html>
